@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI healthText;
     public Image healthImage;
 
-
+    public TextMeshProUGUI coinText;
     private void Awake()
     {
         Instance = this;
