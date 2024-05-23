@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class UIManager : MonoBehaviour
     public Image blackScreen;
     public float fadeSpeed;
     public bool fadeToBlack, fadeFromBlack;
+
+    public TextMeshProUGUI healthText;
+
 
     private void Awake()
     {
