@@ -70,6 +70,7 @@ MonoBehaviour:
   healAmount: 2
   isFullHeal: 0
   heartEffect: {fileID: 100004, guid: 3af6f68141914ca43ba39b2403757bd0, type: 3}
+  soundToPlay: 3
 --- !u!1001 &3230381626993113504
 PrefabInstance:
   m_ObjectHideFlags: 0
