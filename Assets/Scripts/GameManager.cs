@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     public void Respawn()
     {
         StartCoroutine("RespawnWaiter");
+        HealtManager.instance.PlayerKilled();
     }
 
     public IEnumerator RespawnWaiter()

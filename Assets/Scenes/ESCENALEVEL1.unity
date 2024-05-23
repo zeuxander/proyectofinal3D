@@ -213,6 +213,12 @@ MonoBehaviour:
   currentHealt: 5
   maxHealth: 5
   invincibleLength: 2
+  healthBarImages:
+  - {fileID: 21300000, guid: 2cb4fab580a856740ac7727d6f58fbc5, type: 3}
+  - {fileID: 21300000, guid: d010abe148e1a034988978c77c14b098, type: 3}
+  - {fileID: 21300000, guid: 498e1f9b5f6220b4c9610d65d4ae5aed, type: 3}
+  - {fileID: 21300000, guid: 1992c93d4dd214b43a695ef454a4ed60, type: 3}
+  - {fileID: 21300000, guid: 9704dbb03d7288b4e9f0e15525db38d1, type: 3}
 --- !u!1001 &305430650
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -544,6 +550,7 @@ MonoBehaviour:
   fadeToBlack: 0
   fadeFromBlack: 0
   healthText: {fileID: 2074376258}
+  healthImage: {fileID: 1713110006}
 --- !u!114 &1110986533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -904,7 +911,7 @@ GameObject:
   - component: {fileID: 1713110007}
   - component: {fileID: 1713110006}
   m_Layer: 5
-  m_Name: Image
+  m_Name: HealthImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -980,7 +987,7 @@ GameObject:
   - component: {fileID: 2074376258}
   - component: {fileID: 2074376259}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: HealthText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1413,6 +1420,12 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.29952574
       objectReference: {fileID: 0}
+    - target: {fileID: 9173476422739261801, guid: e341bade9df9b1c4a920d766102aefb4,
+        type: 3}
+      propertyPath: deathEffect
+      value: 
+      objectReference: {fileID: 5689139096920174313, guid: 9a52b3cda5aaf9c4780f39294b87b7ee,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

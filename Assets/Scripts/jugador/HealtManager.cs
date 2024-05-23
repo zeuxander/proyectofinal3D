@@ -11,6 +11,8 @@ public class HealtManager : MonoBehaviour
     public float invincibleLength = 2f;
     private float invincCounter;
 
+    public Sprite[] healthBarImages;
+
     private void Awake()
     {
         instance = this;
@@ -70,6 +72,7 @@ public class HealtManager : MonoBehaviour
     public void ResetHealth()
     {
         currentHealt = maxHealth;
+        UIManager.Instance.healthImage.enabled = true;
         UpdateUI();
     }
 
@@ -87,5 +90,36 @@ public class HealtManager : MonoBehaviour
     public void UpdateUI()
     {
         UIManager.Instance.healthText.text = currentHealt.ToString();   
+
+        switch(currentHealt)
+        {
+            case 5:
+                UIManager.Instance.healthImage.sprite = healthBarImages[4];
+                break;
+            case 4:
+                UIManager.Instance.healthImage.sprite = healthBarImages[3];
+                break;
+            case 3:
+                UIManager.Instance.healthImage.sprite = healthBarImages[2];
+                break;
+            case 2:
+                UIManager.Instance.healthImage.sprite = healthBarImages[1];
+                break;
+            case 1:
+                UIManager.Instance.healthImage.sprite = healthBarImages[0];
+                break;
+            case 0:
+                UIManager.Instance.healthImage.enabled = false;
+                break;
+
+
+        }
+
     }
+    public void PlayerKilled()
+    {
+        currentHealt = 0;
+        UpdateUI();
+    }
+
 }

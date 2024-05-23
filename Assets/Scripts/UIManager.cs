@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     public bool fadeToBlack, fadeFromBlack;
 
     public TextMeshProUGUI healthText;
+    public Image healthImage;
 
 
     private void Awake()
