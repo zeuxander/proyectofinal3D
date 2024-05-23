@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour
         CameraController.instance.cmBrain.enabled = true;
 
         PlayerController.instance.gameObject.SetActive(true);
+
+        HealtManager.instance.ResetHealth();
     }
 
 
