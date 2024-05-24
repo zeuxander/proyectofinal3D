@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class AudioManager : MonoBehaviour
 
     public AudioSource[] music;
     public AudioSource[] sfx;
+
+    public AudioMixerGroup musicMixer, sfxMixer;
     private void Awake()
     {
         instance = this;
@@ -31,5 +34,15 @@ public class AudioManager : MonoBehaviour
     public void PlaySFX(int sfxToPlay)
     {
         sfx[sfxToPlay].Play();
+    }
+
+    public void SetMusicLevel()
+    {
+        musicMixer.audioMixer.SetFloat("MusicVol",UIManager.Instance.musicVolSlider.value);
+    }
+
+    public void SetSFXLevel()
+    {
+        sfxMixer.audioMixer.SetFloat("SfxVol", UIManager.Instance.sfxVolSlider.value);
     }
 }
