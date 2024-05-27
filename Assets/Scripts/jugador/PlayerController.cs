@@ -27,11 +27,17 @@ public class PlayerController : MonoBehaviour
 
     public GameObject[] playerPieces;
 
+    public float bounceForce = 8f;
+
+    public bool stopMove;
+
+
+
 
 
     private void Awake()
     {
-        instance = this;    
+        instance = this;
     }
 
     void Start()
@@ -41,7 +47,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if(!isKnocking)
+        if (!isKnocking && !stopMove)
         {
             float yStore = moveDirection.y;
             //movimiento
@@ -81,7 +87,7 @@ public class PlayerController : MonoBehaviour
             }
 
         }
-        if(isKnocking)
+        if (isKnocking)
         {
             knockBackCounter -= Time.deltaTime;
 
@@ -93,24 +99,38 @@ public class PlayerController : MonoBehaviour
 
             charController.Move(moveDirection * Time.deltaTime);
 
-            if (knockBackCounter <=0)
+            if (knockBackCounter <= 0)
             {
                 isKnocking = false;
             }
         }
-       
 
-        animator.SetFloat("Speed", Mathf.Abs(moveDirection.x) + Mathf.Abs(moveDirection.z));
-        animator.SetBool("Grounded", charController.isGrounded);
+        if (stopMove)
+        {
+            moveDirection = Vector3.zero;
+            moveDirection.y += Physics.gravity.y * Time.deltaTime * gravityScale;
+            charController.Move(moveDirection);
+        }
 
+
+            animator.SetFloat("Speed", Mathf.Abs(moveDirection.x) + Mathf.Abs(moveDirection.z));
+            animator.SetBool("Grounded", charController.isGrounded);
+
+        }
+
+
+        public void Knockback()
+        {
+            isKnocking = true;
+            knockBackCounter = knockBackLength;
+            Debug.Log("knoicoked back");
+            moveDirection.y = knockbackPower.y;
+            charController.Move(moveDirection * Time.deltaTime);
+        }
+
+        public void Bounce()
+        {
+            moveDirection.y = bounceForce;
+            charController.Move(moveDirection * Time.deltaTime);
+        }
     }
-
-    public void Knockback()
-    {
-        isKnocking = true;
-        knockBackCounter = knockBackLength;
-        Debug.Log("knoicoked back");
-        moveDirection.y = knockbackPower.y;
-        charController.Move(moveDirection * Time.deltaTime);
-    }
-}
