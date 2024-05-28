@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class LSLevelEntry : MonoBehaviour
 {
 
-    public string levelName, levelToCheck;
+    public string levelName, levelToCheck, displayName;
     public bool canLoadLevel;
 
     public GameObject mapPointActive, mapPointInactive;
@@ -18,7 +18,8 @@ public class LSLevelEntry : MonoBehaviour
 
     private void Start()
     {
-        if(PlayerPrefs.GetInt(levelToCheck + "_unloked") == 1 || levelToCheck == "")
+        print(levelToCheck + "_unlocked");
+        if(PlayerPrefs.GetInt(levelToCheck + "_unlocked") == 1 || levelToCheck == "")
         {
             mapPointActive.SetActive(true);
             mapPointInactive.SetActive(false);
@@ -30,22 +31,46 @@ public class LSLevelEntry : MonoBehaviour
             mapPointInactive.SetActive(true);
             _levelUnlocked=false;
         }
+
+        if(PlayerPrefs.GetString("CurrentLevel") == levelName)
+        {
+            PlayerController.instance.transform.position = transform.position;
+            LSResetPlayer.instance.respawnPosition = transform.position;
+        }
     }
 
     private void Update()
     {
-        if (Input.GetButton("Jump") && canLoadLevel && _levelUnlocked && !levelLoading) 
+        if (Input.GetButton("Jump") && canLoadLevel && _levelUnlocked && !levelLoading)
         {
             StartCoroutine("LevelLoadWaiter");
             levelLoading = true;
+
+  
         }
+
+       
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
             
             canLoadLevel = true;
+
+            LSUIManager.Instance.lNamePanel.SetActive(true);
+            LSUIManager.Instance.lNameText.text = displayName;
+
+            if(PlayerPrefs.HasKey(levelName + "_coins"))
+            {
+                LSUIManager.Instance.coinsText.text = PlayerPrefs.GetInt(levelName + "_coins").ToString();
+            }
+            else
+            {
+                LSUIManager.Instance.coinsText.text = "???";
+            }
+
         }
     }
 
@@ -55,6 +80,7 @@ public class LSLevelEntry : MonoBehaviour
         {
             canLoadLevel = false;
         }
+        LSUIManager.Instance.lNamePanel.SetActive(false);
     }
     
     public IEnumerator LevelLoadWaiter()
@@ -65,5 +91,6 @@ public class LSLevelEntry : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         SceneManager.LoadScene(levelName);
+        PlayerPrefs.SetString("CurrentLevel", levelName);
     }
 }

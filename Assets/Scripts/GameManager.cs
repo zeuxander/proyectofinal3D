@@ -113,7 +113,19 @@ public class GameManager : MonoBehaviour
         PlayerController.instance.stopMove = true;
         yield return new WaitForSeconds(3f);
 
-        PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "_unloked", 1);
+        PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "_unlocked", 1);
+
+        if(PlayerPrefs.HasKey(SceneManager.GetActiveScene().name + "_coins"))
+        {
+            if(currentCoins > PlayerPrefs.GetInt(SceneManager.GetActiveScene().name + "_coins"))
+            {
+                PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "_coins", currentCoins);
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "_coins", currentCoins);
+        }
 
         SceneManager.LoadScene(levelToLoad);
 

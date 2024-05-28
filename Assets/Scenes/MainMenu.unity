@@ -244,6 +244,9 @@ MonoBehaviour:
   firstLevel: nivel1prueba
   levelSelect: LevelSelect
   continueButton: {fileID: 1742127396}
+  levelName:
+  - nivel1prueba
+  - ESCENALEVEL1
 --- !u!1001 &232038253
 PrefabInstance:
   m_ObjectHideFlags: 0

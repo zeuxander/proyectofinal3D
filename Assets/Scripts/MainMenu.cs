@@ -14,11 +14,17 @@ public class MainMenu : MonoBehaviour
 
     public GameObject continueButton;
 
+    public string[] levelName;
+
     private void Start()
     {
         if (PlayerPrefs.HasKey("Continue"))
         {
             continueButton.SetActive(true);
+        }
+        else
+        {
+            ResetProgress();
         }
     }
 
@@ -28,6 +34,9 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(firstLevel);
 
         PlayerPrefs.SetInt("Continue", 0); 
+        PlayerPrefs.SetString("CurentLevel", firstLevel);
+
+        ResetProgress();
     }
 
     public void Continue()
@@ -38,6 +47,14 @@ public class MainMenu : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void ResetProgress()
+    {
+        for (int i = 0; i < levelName.Length; i++)
+        {
+            PlayerPrefs.SetInt(levelName[i] + "_unlocked", 0);
+        }
     }
 
 }
