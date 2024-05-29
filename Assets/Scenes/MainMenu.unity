@@ -282,7 +282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b9330aad32a42641a346198b19a9720, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstLevel: nivel1prueba
+  firstLevel: nivel1
   levelSelect: LevelSelect
   continueButton: {fileID: 1742127396}
   levelName:
