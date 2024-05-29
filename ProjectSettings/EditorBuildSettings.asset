@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/ESCENALEVEL1.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/nivel1prueba.unity
+    path: Assets/Scenes/nivel1.unity
     guid: 623b35f8875216543a80ab38f084af3c
   - enabled: 1
     path: Assets/Scenes/LevelSelect.unity
